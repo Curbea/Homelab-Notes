@@ -17,5 +17,5 @@ Biggest hurdle in diagnosing and fixing
 
 https://netdevconf.info/1.2/slides/oct6/04_gerlitz_efraim_introduction_to_switchdev_sriov_offloads.pdf
 
-
+https://forums.servethehome.com/index.php?threads/fully-utilizing-the-connectx-5-eswitch-switchdev-functionality-in-proxmox-ve.44740/
 https://forum.proxmox.com/threads/communication-issue-between-sriov-vm-vf-and-ct-on-pf-bridge.68638/
