@@ -3,9 +3,8 @@
 # Primary device name and location.
 DEVNAME=enp2s0f0
 DevName2=enp2s0f1
-DEVPCIBASE=0000:02:00
-EXTPCIBASE=0000:02:01
-LASTPCIBASE=0000:02:02
+DEVPCIBASE=0000:02:0
+
 # Add SR-IOV virtual functions.
 /usr/bin/echo 8 > /sys/class/net/${DEVNAME}/device/sriov_numvfs
 /usr/bin/echo 8 > /sys/class/net/${DEVNAME2}/device/sriov_numvfs
@@ -30,27 +29,26 @@ LASTPCIBASE=0000:02:02
 /usr/bin/ip link set ${DEVNAME2} vf 6 mac c2:92:f5:fa:32:20
 /usr/bin/ip link set ${DEVNAME2} vf 7 mac 2e:fb:29:1e:48:31
 # Unbind the virtual functions.
-/usr/bin/echo ${DEVPCIBASE}.2 > /sys/bus/pci/drivers/mlx5_core/unbind
-/usr/bin/echo ${DEVPCIBASE}.3 > /sys/bus/pci/drivers/mlx5_core/unbind
-/usr/bin/echo ${DEVPCIBASE}.4 > /sys/bus/pci/drivers/mlx5_core/unbind
-/usr/bin/echo ${DEVPCIBASE}.5 > /sys/bus/pci/drivers/mlx5_core/unbind
-/usr/bin/echo ${DEVPCIBASE}.6 > /sys/bus/pci/drivers/mlx5_core/unbind
-/usr/bin/echo ${DEVPCIBASE}.7 > /sys/bus/pci/drivers/mlx5_core/unbind
-
-/usr/bin/echo ${EXTPCIBASE}.0 > /sys/bus/pci/drivers/mlx5_core/unbind
-/usr/bin/echo ${EXTPCIBASE}.1 > /sys/bus/pci/drivers/mlx5_core/unbind
-/usr/bin/echo ${EXTPCIBASE}.2 > /sys/bus/pci/drivers/mlx5_core/unbind
-/usr/bin/echo ${EXTPCIBASE}.3 > /sys/bus/pci/drivers/mlx5_core/unbind
-/usr/bin/echo ${EXTPCIBASE}.4 > /sys/bus/pci/drivers/mlx5_core/unbind
-/usr/bin/echo ${EXTPCIBASE}.5 > /sys/bus/pci/drivers/mlx5_core/unbind
-/usr/bin/echo ${EXTPCIBASE}.6 > /sys/bus/pci/drivers/mlx5_core/unbind
-/usr/bin/echo ${EXTPCIBASE}.7 > /sys/bus/pci/drivers/mlx5_core/unbind
-
-/usr/bin/echo ${LASTPCIBASE}.0 > /sys/bus/pci/drivers/mlx5_core/unbind
-/usr/bin/echo ${LASTPCIBASE}.1 > /sys/bus/pci/drivers/mlx5_core/unbind
+/usr/bin/echo ${DEVPCIBASE}0.2 > /sys/bus/pci/drivers/mlx5_core/unbind
+/usr/bin/echo ${DEVPCIBASE}0.3 > /sys/bus/pci/drivers/mlx5_core/unbind
+/usr/bin/echo ${DEVPCIBASE}0.4 > /sys/bus/pci/drivers/mlx5_core/unbind
+/usr/bin/echo ${DEVPCIBASE}0.5 > /sys/bus/pci/drivers/mlx5_core/unbind
+/usr/bin/echo ${DEVPCIBASE}0.6 > /sys/bus/pci/drivers/mlx5_core/unbind
+/usr/bin/echo ${DEVPCIBASE}0.7 > /sys/bus/pci/drivers/mlx5_core/unbind
+/usr/bin/echo ${DEVPCIBASE}0.0 > /sys/bus/pci/drivers/mlx5_core/unbind
+/usr/bin/echo ${DEVPCIBASE}0.1 > /sys/bus/pci/drivers/mlx5_core/unbind
+#2nd PF
+/usr/bin/echo ${DEVPCIBASE}0.2 > /sys/bus/pci/drivers/mlx5_core/unbind
+/usr/bin/echo ${DEVPCIBASE}0.3 > /sys/bus/pci/drivers/mlx5_core/unbind
+/usr/bin/echo ${DEVPCIBASE}0.4 > /sys/bus/pci/drivers/mlx5_core/unbind
+/usr/bin/echo ${DEVPCIBASE}0.5 > /sys/bus/pci/drivers/mlx5_core/unbind
+/usr/bin/echo ${DEVPCIBASE}0.6 > /sys/bus/pci/drivers/mlx5_core/unbind
+/usr/bin/echo ${DEVPCIBASE}0.7 > /sys/bus/pci/drivers/mlx5_core/unbind
+/usr/bin/echo ${DEVPCIBASE}0.0 > /sys/bus/pci/drivers/mlx5_core/unbind
+/usr/bin/echo ${DEVPCIBASE}0.1 > /sys/bus/pci/drivers/mlx5_core/unbind
 # Enable the eSwitch.
-/usr/sbin/devlink dev eswitch set pci/${DEVPCIBASE}.0 mode switchdev
-/usr/sbin/devlink dev eswitch set pci/${DEVPCIBASE}.1 mode switchdev
+/usr/sbin/devlink dev eswitch set pci/${DEVPCIBASE}0.0 mode switchdev
+/usr/sbin/devlink dev eswitch set pci/${DEVPCIBASE}0.1 mode switchdev
 
 # Set up OpenVSwitch.
 /usr/bin/ovs-vsctl add-br vmbr5
@@ -76,11 +74,29 @@ done;
 /usr/bin/ip link set dev ${DEVNAME2} up
 for i in `ls /sys/class/net/${DEVNAME}/device/net/ | grep -v ${DEVNAME}`; do
   /usr/bin/ip link set dev ${i} up
+done;
+
 for i in `ls /sys/class/net/${DEVNAME2}/device/net/ | grep -v ${DEVNAME2}`; do
   /usr/bin/ip link set dev ${i} up
 done;
 
 # Bind first VF to host
-echo ${DEVPCIBASE}.2 > /sys/bus/pci/drivers/mlx5_core/bind
-
-/usr/bin/driverctl set-override ${DEVPCIBASE}.2 mlx5_core
+/usr/bin/driverctl set-override ${DEVPCIBASE}0.2 mlx5_core
+#Bind the rest of the VF's to vfio
+#Pf 1
+/usr/bin/driverctl set-override ${DEVPCIBASE}0.3 vfio_pci
+/usr/bin/driverctl set-override ${DEVPCIBASE}0.4 vfio_pci
+/usr/bin/driverctl set-override ${DEVPCIBASE}0.5 vfio_pci
+/usr/bin/driverctl set-override ${DEVPCIBASE}0.6 vfio_pci
+/usr/bin/driverctl set-override ${DEVPCIBASE}0.7 vfio_pci
+/usr/bin/driverctl set-override ${DEVPCIBASE}1.0 vfio_pci
+/usr/bin/driverctl set-override ${DEVPCIBASE}1.1 vfio_pci
+#Pf 2
+/usr/bin/driverctl set-override ${DEVPCIBASE}1.2 vfio_pci
+/usr/bin/driverctl set-override ${DEVPCIBASE}1.3 vfio_pci
+/usr/bin/driverctl set-override ${DEVPCIBASE}1.4 vfio_pci
+/usr/bin/driverctl set-override ${DEVPCIBASE}1.5 vfio_pci
+/usr/bin/driverctl set-override ${DEVPCIBASE}1.6 vfio_pci
+/usr/bin/driverctl set-override ${DEVPCIBASE}1.7 vfio_pci
+/usr/bin/driverctl set-override ${DEVPCIBASE}2.0 vfio_pci
+/usr/bin/driverctl set-override ${DEVPCIBASE}2.1 vfio_pci
