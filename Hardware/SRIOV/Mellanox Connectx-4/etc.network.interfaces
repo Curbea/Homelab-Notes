@@ -9,76 +9,77 @@ auto enp2s0f0v0
 iface enp2s0f0v0 inet static
     address 
     gateway 
-    mtu 9000
-
-# Physical interfaces
-auto enp2s0f0
-iface enp2s0f0 inet manual
-    mtu 9000
-
-auto enp2s0f1
-iface enp2s0f1 inet manual
-    mtu 9000
+    ovs_mtu 9000
 
 # Open vSwitch configuration
 auto vmbr5
 iface vmbr5 inet manual
     ovs_type OVSBridge
     ovs_ports enp2s0f0 enp2s0f1 enp2s0f0v0 enp2s0f0v1 enp2s0f0v2 enp2s0f0v3 enp2s0f0v4 enp2s0f0v5 enp2s0f0v6 enp2s0f0v7 enp2s0f1v0 enp2s0f1v1 enp2s0f1v2 enp2s0f1v3 enp2s0f1v4 enp2s0f1v5 enp2s0f1v6 enp2s0f1v7
-
+    ovs_mtu 9000
 # VF PORTS
 
+# Physical interfaces
+auto enp2s0f0
+iface enp2s0f0 inet manual
+    ovs_mtu 9000
+
+auto enp2s0f1
+iface enp2s0f1 inet manual
+    ovs_mtu 9000
+
+
 #iface enp2s0f0 inet manual# We already set this one up
-#    mtu 9000              #
+#    ovs_mtu 9000              #
 
 iface enp2s0f1 inet manual
-    mtu 9000
+    ovs_mtu 9000
 
-# Bring up the representor devices with MTU 9000
+# Bring up the representor devices with mtu 9000
 iface enp2s0f0v0 inet manual
-    mtu 9000
+    ovs_mtu 9000
 
 iface enp2s0f0v1 inet manual
-    mtu 9000
+    ovs_mtu 9000
 
 iface enp2s0f0v2 inet manual
-    mtu 9000
+    ovs_mtu 9000
 
 iface enp2s0f0v3 inet manual
-    mtu 9000
+    ovs_mtu 9000
 
 iface enp2s0f0v4 inet manual
-    mtu 9000
+    ovs_mtu 9000
 
 iface enp2s0f0v5 inet manual
-    mtu 9000
+    ovs_mtu 9000
 
 iface enp2s0f0v6 inet manual
-    mtu 9000
+    ovs_mtu 9000
 
 iface enp2s0f0v7 inet manual
-    mtu 9000
+    ovs_mtu 9000
 
 iface enp2s0f1v0 inet manual
-    mtu 9000
+    ovs_mtu 9000
 
 iface enp2s0f1v1 inet manual
-    mtu 9000
+    ovs_mtu 9000
 
 iface enp2s0f1v2 inet manual
-    mtu 9000
+    ovs_mtu 9000
 
 iface enp2s0f1v3 inet manual
-    mtu 9000
+    ovs_mtu 9000
 
 iface enp2s0f1v4 inet manual
-    mtu 9000
+    ovs_mtu 9000
 
 iface enp2s0f1v5 inet manual
-    mtu 9000
+    ovs_mtu 9000
 
 iface enp2s0f1v6 inet manual
-    mtu 9000
+    ovs_mtu 9000
 
 iface enp2s0f1v7 inet manual
-    mtu 9000
+    ovs_mtu 9000
