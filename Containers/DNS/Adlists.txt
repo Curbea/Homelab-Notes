@@ -2,14 +2,14 @@ https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.txt
 https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.txt
 https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
 https://www.github.developerdan.com/hosts/lists/ads-and-tracking-extended.txt
-https://gist.githubusercontent.com/leviem1/94ee89e816b4d63298a2fb5c9f822bc3/raw/3f3eb67>
+https://gist.githubusercontent.com/leviem1/94ee89e816b4d63298a2fb5c9f822bc3/raw/3f3eb67e5cd7845fd0ac57b674a1f2e793012457/fangxiao-domains-pihole-blocklist-11-2022
 https://hosts.tweedge.net/malicious.txt
 https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.txt
 https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/fake.txt
 https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/gambling.txt
 https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.tiktok.txt
 https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.lgwebos.txt
-https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.winoffice.t>
+https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.winoffice.txt
 https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.huawei.txt
 https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/native.amazon.txt
 https://small.oisd.nl/
