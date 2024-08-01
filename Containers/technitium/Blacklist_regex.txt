@@ -29,3 +29,5 @@
 ^mads\.
 ^pixels?[-.]
 ^stat(s|istics)?[0-9]*[_.-]
+# Added from dispo2 reddit comment "What it will do is block any and all fake domains trying to look like real ones with dodgy ascii characters."
+(^|\.)xn--.*$ 
