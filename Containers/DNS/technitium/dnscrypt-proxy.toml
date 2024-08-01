@@ -1,47 +1,11 @@
-## Backup upstream dns; listens on port 54, all traffic is proxied through tor, upstream servers use odoh
+## Backup upstream dns; listens on port 5454, all traffic is proxied through tor, upstream servers use odoh
 ## Probably needlessly secure, comparatively slow.
 
-##############################################
-#                                            #
-#        dnscrypt-proxy configuration        #
-#                                            #
-##############################################
 
-## This is an example configuration file.
-## You should adjust it to your needs, and save it as "dnscrypt-proxy.toml"
-##
-## Online documentation is available here: https://dnscrypt.info/doc
-
-
-
-##################################
-#         Global settings        #
-##################################
-
-## List of servers to use
-##
-## Servers from the "public-resolvers" source (see down below) can
-## be viewed here: https://dnscrypt.info/public-servers
-##
-## The proxy will automatically pick working servers from this list.
-## Note that the require_* filters do NOT apply when using this setting.
-##
-## By default, this list is empty and all registered servers matching the
-## require_* filters will be used instead.
-##
-## Remove the leading # first to enable this; lines starting with # are ignored.
 
 server_names = ['odoh-koki-se', 'odoh-cloudflare', 'odoh-crypto-sx', 'odoh-ibksturm']
 
-
-## List of local addresses and ports to listen to. Can be IPv4 and/or IPv6.
-## Example with both IPv4 and IPv6:
-## listen_addresses = ['127.0.0.1:54', 
-##
-## To listen to all IPv4 addresses, use `listen_addresses = ['0.0.0.0:53']`
-## To listen to all IPv4+IPv6 addresses, use `listen_addresses = ['[::]:53']`
-
-listen_addresses = ['127.0.0.1:54']
+listen_addresses = ['127.0.0.1:5454']
 
 
 ## Maximum number of simultaneous client connections to accept
@@ -124,7 +88,7 @@ http3 = false
 ## increase this. Startup may be slower if you do so.
 ## Don't increase it too much. 10000 is the highest reasonable value.
 
-timeout = 5000
+timeout = 7500
 
 
 ## Keepalive for HTTP (HTTPS, HTTP/2, HTTP/3) queries, in seconds
